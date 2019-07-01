@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>BoardWrite</title>
+<title>Detail</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -16,16 +16,18 @@
 </head>
 <body>
 	<div class="container">
-		<form action="boardWriteProc">
+		<form action="boardModifyProc">
 			<input type="hidden" value="${loginId }" name="id">
+			<input type="hidden" value="${listDetail[0].no }" name="no">
 			<lable>제목</lable>
-			<input class="form-control" type="text" name="title">${listDetail.title }
+			<input class="form-control" type="text" name="title" value="${listDetail[0].title}">
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">내용</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text">${listDetail.text}</textarea>
+				<textarea class="form-control" id="exampleFormControlTextarea1"
+					rows="3" name="text">${listDetail[0].text}</textarea>
 			</div>
-			<input type="submit" value="수정하기">
-			<input type="button" value="글삭제">
+				<input type="submit" value="수정하기"> 
+				<input type="button" value="글삭제">
 		</form>
 	</div>
 </body>

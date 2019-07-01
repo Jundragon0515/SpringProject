@@ -34,17 +34,21 @@ public class BoardDAO {
 		return list;
 	}
 	
-	public List<BoardDTO> selectDetail(int no){
+	public List<BoardDTO> selectDetail(int seq){
 		String sql = "select * from board where seq = ?";
-		List<BoardDTO> list = template.query(sql, new Object[] {no}, new RowMapper<BoardDTO>() {
+		List<BoardDTO> list = template.query(sql, new Object[] {seq}, new RowMapper<BoardDTO>() {
 			@Override
 			public BoardDTO mapRow(ResultSet rs, int rn) throws SQLException {
 				BoardDTO bdto = new BoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
 				return bdto;
 			}
 		});
-		
 		return list ;
+	}
+	
+	public int update(BoardDTO dto) {
+		String sql = "update board set title = ?, text=?  where seq=?";
+		return template.update(sql, dto.getTitle(), dto.getText(), dto.getNo());
 	}
 	
 	

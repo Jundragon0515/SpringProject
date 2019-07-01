@@ -76,10 +76,24 @@ public class BoardController {
 	public ModelAndView boardDetail() {
 		ModelAndView mav = new ModelAndView();
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("번호 :" + no);
 		List<BoardDTO> list = bdao.selectDetail(no);
 		mav.addObject("listDetail", list);
 		mav.setViewName("boardDetail");
+		return mav;
+	}
+	
+	@RequestMapping("boardModifyProc")
+	public ModelAndView boardModify(BoardDTO dto) {
+		ModelAndView mav = new ModelAndView();
+			int result = bdao.update(dto);
+			String msg=null;
+			if(result==1) {
+				msg = "게시글이 수정 되었습니다."; 
+			}else {
+				msg = "게시글 수정 실패";
+			}
+				mav.addObject("msg", msg);
+				mav.setViewName("boardModifyResult");
 		return mav;
 	}
 	
