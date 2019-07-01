@@ -2,8 +2,10 @@ package kh.spring.practice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,6 +82,23 @@ public class BoardController {
 		mav.addObject("listDetail", list);
 		mav.setViewName("boardDetail");
 		return mav;
+	}
+	
+	@RequestMapping("boardDelete")
+	public ModelAndView boardDelete(int no) {
+		ModelAndView mav = new ModelAndView();
+		int result = bdao.delete(no);
+		System.out.println(result);
+		String msg=null;
+		if(result==1) {
+			msg="게시글이 삭제 되었습니다.";
+		}else {
+			msg="게시글 삭제 실패";
+		}
+		mav.addObject("result", msg);
+		mav.setViewName("boardDeleteResult");
+		return mav;
+		
 	}
 	
 	@RequestMapping("boardModifyProc")

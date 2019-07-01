@@ -6,13 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Detail</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+	$(function(){
+		 $("#delete").on("click", function(){
+			var seq=$("input[name=no]").val();
+		 $(location).attr("href", "boardDelete?no="+ seq);
+	 })
+})
+</script>
 </head>
 <body>
 	<div class="container">
@@ -27,7 +31,7 @@
 					rows="3" name="text">${listDetail[0].text}</textarea>
 			</div>
 				<input type="submit" value="수정하기"> 
-				<input type="button" value="글삭제">
+				<input type="button" id="delete" value="글삭제">
 		</form>
 	</div>
 </body>

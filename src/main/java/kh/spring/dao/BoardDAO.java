@@ -43,7 +43,7 @@ public class BoardDAO {
 				return bdto;
 			}
 		});
-		return list ;
+		return list;
 	}
 	
 	public int update(BoardDTO dto) {
@@ -51,6 +51,10 @@ public class BoardDAO {
 		return template.update(sql, dto.getTitle(), dto.getText(), dto.getNo());
 	}
 	
+	public int delete(int no) {
+		String sql = "delete from board where seq =?";
+		return template.update(sql, no);
+	}
 	
 	public int recordTotalCount() {
 		String sql = "select count(*) from board";
